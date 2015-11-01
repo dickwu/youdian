@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Override point for customization after application launch.
         var shouldPerformAdditionalDelegateHandling = true
-        
+        /*
         // If a shortcut was launched, display its information and take the appropriate action
         if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
             
@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.shortcutItems = [shortcut3,shortcut4]
         }
 
-        
+        */
         
         //友盟统计
         MobClick.startWithAppkey("55b8566067e58e5cb000733b")
@@ -172,7 +172,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
     }
-    
+    /*
     @available(iOS 9.0, *)
     func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
         let handledShortCutItem = handleShortCutItem(shortcutItem)
@@ -249,7 +249,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return handled
     }
     
-    
+    */
     // MARK: Application Life Cycle
     
     func applicationDidBecomeActive(application: UIApplication) {
