@@ -35,7 +35,7 @@ class aboutUdian: UIViewController,UITableViewDataSource,UITableViewDelegate {
         return 1
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 7
+        return 1
     }
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
@@ -55,15 +55,21 @@ class aboutUdian: UIViewController,UITableViewDataSource,UITableViewDelegate {
             return 0
         }
     }
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        //print(scrollView.contentOffset.y)
+        scrollView.contentOffset.y = -20
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = table.dequeueReusableCellWithIdentifier("one")!
         let image = cell.viewWithTag(10) as! UIImageView
-        image.image = UIImage(named: "引导\(indexPath.section + 1)")
+        //image.image = UIImage(named: "引导\(indexPath.section + 1)")
+        image.image = UIImage(named: "引导11")
+        
         return cell
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return nowFrame.width/1242*2208
+        return nowFrame.width/1242*2208 - 64
     }
     /*
     // MARK: - Navigation

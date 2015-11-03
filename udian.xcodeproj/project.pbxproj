@@ -1076,7 +1076,7 @@
 		F69A3CEA1BC8F0FD0060CD4B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = qiuqian;
 				TargetAttributes = {
 					F69A3CF11BC8F0FD0060CD4B = {
@@ -1502,7 +1502,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.udian;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3cf052cd-9356-420d-8cca-7c47f18826f5";
-				SDKROOT = iphoneos9.1;
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = udian/Header.h;
 			};
 			name = Debug;
@@ -1533,7 +1533,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.udian;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3cf052cd-9356-420d-8cca-7c47f18826f5";
-				SDKROOT = iphoneos9.1;
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = udian/Header.h;
 			};
 			name = Release;

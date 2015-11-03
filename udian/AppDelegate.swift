@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainBund = JSON(NSBundle.mainBundle().infoDictionary!)
         MobClick.setAppVersion(mainBund["CFBundleShortVersionString"].stringValue)
         MobClick.setEncryptEnabled(true)//加密日志
-        MobClick.checkUpdate()
+        
         //分享
         ShareSDK.registerApp("a1ae4f15d278",
             
