@@ -80,6 +80,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var searchback = UIView()
     //下拉刷新
     var refreshControl = UIRefreshControl()
+    //let refresh = RefreshView()
+    
+    
     
     //搜索需要参数------------------------------------
     //是否是搜索
@@ -152,12 +155,16 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             let filte = story.instantiateViewControllerWithIdentifier("leadView") as! leadView
             self.navigationController?.pushViewController(filte, animated: false)
         }
+        
+        
         self.refreshControl.removeFromSuperview()
         refreshControl.addTarget(self, action: Selector("pullDown"), forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
         self.table.addSubview(self.refreshControl)
+        
         self.table.sendSubviewToBack(self.refreshControl)
 
+        
         SystemInfoUpdate()
         NSNotificationCenter.defaultCenter().removeObserver("gotoFeedDetil", name: "gotoFeedDetil", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "SystemInfoUpdate", name: "SystemInfoUpdate", object: nil)
@@ -394,6 +401,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        //refresh.position = scrollView.contentOffset.y
         //print(scrollView.contentOffset.y)
     }
     

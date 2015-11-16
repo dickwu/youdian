@@ -262,7 +262,7 @@ class settingMain: UIViewController {
             }
             case 3:
                 MobClick.event("ScoringBtn")
-                UIApplication.sharedApplication().openURL(NSURL(string: "itms-apps://itunes.apple.com/app/1032310386")!)
+                UIApplication.sharedApplication().openURL(NSURL(string: "itms-apps://itunes.apple.com/cn/app/quan-min-you-dian/id1032310386?l=en&mt=8")!)
             case 4:
                 if LocalData.CanShowShare{
                     LocalData.CanShowShare = false

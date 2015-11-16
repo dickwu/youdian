@@ -9,6 +9,8 @@
 import Foundation
 extension ViewController{
     
+    
+    
     func loadNotSearchCell(indexPath:NSIndexPath)->UITableViewCell{
         var cell = UITableViewCell()
         let row = indexPath.row
@@ -191,6 +193,10 @@ extension ViewController{
                 self.AreNeedMore = res["data"]["length"].intValue > 0
                 let Jres = res["data"]["data"].arrayValue
                 //print(res)
+//                self.refresh.frame = CGRect(x: 0, y: -200, width: self.table.frame.width, height: 200)
+//                self.table.addSubview(self.refresh)
+//                self.table.sendSubviewToBack(self.refresh)
+                
                 self.feedlen = Jres.count
                 for one in Jres{
                     let TitleFee = Onefeed()

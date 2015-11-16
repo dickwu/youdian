@@ -921,6 +921,7 @@ class TwoChange: UIViewController,UITableViewDataSource,UITableViewDelegate,UIWe
 
     
     @IBAction func back(sender: AnyObject) {
+        LocalData.CanJump = true
         self.navigationController?.popViewControllerAnimated(true)
     }
     

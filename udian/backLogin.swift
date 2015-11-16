@@ -149,55 +149,58 @@ extension UIViewController:ViewControllerDeleget{
     }
     
     func pushTofeed(){
-        let story = UIStoryboard(name: "Main", bundle: nil)//获取故事版
-        let filte = story.instantiateViewControllerWithIdentifier("TwoChange") as! TwoChange//定位视图
-        filte.AreLeft = true
-        if LocalData.PushUid == "0"{
-            filte.AreNeedJunp = false
-        }else{
-            filte.AreNeedJunp = true
-        }
-        
-        filte.IdOfFeed = LocalData.PushFeedId
-        
-        APIPOST.feedMore(LocalData.PushFeedId) { (res) -> Void in
-            print(res)
-            let Jres = res["data"]
-            let quanMinUrl = Jres["commndurl"].stringValue
-            let changGuandianUrl = Jres["lpointurl"].stringValue
-            let backImag = Jres["feed_bg"].stringValue
-            let boundLong = Jres["match_points"].intValue
-            filte.LeftUrl = quanMinUrl //全民点评
-            filte.RightUrl  = changGuandianUrl
-            filte.PicOfFeed = backImag //feed背景图(用于分享)
-            if boundLong == 0{
-                //没有长观点绑定
-                if quanMinUrl != ""{
-                    if changGuandianUrl != ""{
-                        filte.AreTwoType = true
-                        
+        if LocalData.CanJump{
+            LocalData.CanJump = false
+            let story = UIStoryboard(name: "Main", bundle: nil)//获取故事版
+            let filte = story.instantiateViewControllerWithIdentifier("TwoChange") as! TwoChange//定位视图
+            filte.AreLeft = true
+            if LocalData.PushUid == "0"{
+                filte.AreNeedJunp = false
+            }else{
+                filte.AreNeedJunp = true
+            }
+            
+            filte.IdOfFeed = LocalData.PushFeedId
+            
+            APIPOST.feedMore(LocalData.PushFeedId) { (res) -> Void in
+                print(res)
+                let Jres = res["data"]
+                let quanMinUrl = Jres["commndurl"].stringValue
+                let changGuandianUrl = Jres["lpointurl"].stringValue
+                let backImag = Jres["feed_bg"].stringValue
+                let boundLong = Jres["match_points"].intValue
+                filte.LeftUrl = quanMinUrl //全民点评
+                filte.RightUrl  = changGuandianUrl
+                filte.PicOfFeed = backImag //feed背景图(用于分享)
+                if boundLong == 0{
+                    //没有长观点绑定
+                    if quanMinUrl != ""{
+                        if changGuandianUrl != ""{
+                            filte.AreTwoType = true
+                            
+                        }else{
+                            self.errorMessage("提示", info: "对应文章已经被删除")
+                            return
+                        }
                     }else{
-                        self.errorMessage("提示", info: "对应文章已经被删除")
-                        return
+                        filte.AreTwoType = false
+                        filte.AreLeft = false
+                        
                     }
                 }else{
-                    filte.AreTwoType = false
-                    filte.AreLeft = false
-                    
+                    if changGuandianUrl != ""{
+                        //有长观点绑定且有全民点评
+                        filte.AreBound = true
+                        
+                    }else{
+                        filte.AreTwoType = false
+                        filte.AreLeft = false
+                        
+                    }
                 }
-            }else{
-                if changGuandianUrl != ""{
-                    //有长观点绑定且有全民点评
-                    filte.AreBound = true
-                    
-                }else{
-                    filte.AreTwoType = false
-                    filte.AreLeft = false
-                    
-                }
+                self.navigationController?.pushViewController(filte, animated: true)
+                
             }
-            self.navigationController?.pushViewController(filte, animated: true)
-            
         }
     }
     

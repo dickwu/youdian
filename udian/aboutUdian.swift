@@ -57,7 +57,7 @@ class aboutUdian: UIViewController,UITableViewDataSource,UITableViewDelegate {
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {
         //print(scrollView.contentOffset.y)
-        scrollView.contentOffset.y = -20
+        //scrollView.contentOffset.y = -20
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
@@ -69,7 +69,7 @@ class aboutUdian: UIViewController,UITableViewDataSource,UITableViewDelegate {
         return cell
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return nowFrame.width/1242*2208 - 64
+        return nowFrame.width/1242*2208
     }
     /*
     // MARK: - Navigation

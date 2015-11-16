@@ -1313,6 +1313,7 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
     
     
     @IBAction func back(sender: AnyObject) {
+        LocalData.CanJump = true
         self.navigationController?.popViewControllerAnimated(true)
     }
     

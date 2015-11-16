@@ -133,6 +133,7 @@
 		F69A3CF81BC8F0FD0060CD4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69A3CF71BC8F0FD0060CD4B /* ViewController.swift */; };
 		F69A3CFB1BC8F0FE0060CD4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F69A3CF91BC8F0FE0060CD4B /* Main.storyboard */; };
 		F69A3CFD1BC8F0FE0060CD4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F69A3CFC1BC8F0FE0060CD4B /* Assets.xcassets */; };
+		F6AD3D231BEF5F160092DE8D /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AD3D221BEF5F160092DE8D /* RefreshView.swift */; };
 		F6ED23EF1BD9EE2B00A45F2B /* firstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ED23EE1BD9EE2B00A45F2B /* firstView.swift */; };
 /* End PBXBuildFile section */
 
@@ -495,6 +496,7 @@
 		F69A3CFA1BC8F0FE0060CD4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F69A3CFC1BC8F0FE0060CD4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F69A3D011BC8F0FE0060CD4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6AD3D221BEF5F160092DE8D /* RefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
 		F6ED23EE1BD9EE2B00A45F2B /* firstView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = firstView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -966,6 +968,7 @@
 				F648DD8F1BC909E500F978DD /* MeaageData.swift */,
 				F648DD951BC909E500F978DD /* SearchTitle.swift */,
 				F648DD971BC909E500F978DD /* seachEmpty.swift */,
+				F6AD3D221BEF5F160092DE8D /* RefreshView.swift */,
 			);
 			name = feed;
 			sourceTree = "<group>";
@@ -1311,6 +1314,7 @@
 				F648DD331BC9084C00F978DD /* QNFileRecorder.m in Sources */,
 				F648DD311BC9084C00F978DD /* QNSessionManager.m in Sources */,
 				F648DD471BC9084C00F978DD /* MWZoomingScrollView.m in Sources */,
+				F6AD3D231BEF5F160092DE8D /* RefreshView.swift in Sources */,
 				F648DD291BC9084C00F978DD /* SwiftyJSON.swift in Sources */,
 				F648DD301BC9084C00F978DD /* QNResponseInfo.m in Sources */,
 				F648DDA81BC909E500F978DD /* ExMainView.swift in Sources */,
