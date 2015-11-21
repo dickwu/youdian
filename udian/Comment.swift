@@ -165,9 +165,11 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
 //        }
         
         NSNotificationCenter.defaultCenter().removeObserver("gotoFeedDetil", name: "gotoFeedDetil", object: nil)
+        MobClick.beginLogPageView("评论页")
     }
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver("gotoFeedDetil", name: "gotoFeedDetil", object: nil)
+        MobClick.endLogPageView("评论页")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -483,7 +485,7 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
                     })
                     comments.removeAtIndex(row)
                 }else{
-                    APIPOST.DeletcommentInfo(comments[row].commentID, feedid: feedId, position : comments[row].floorNum, com: { (res) -> Void in
+                    APIPOST.DeletcommentInfo(Mycomments[row].commentID, feedid: feedId, position : Mycomments[row].floorNum, com: { (res) -> Void in
                         print(res)
                     })
                     Mycomments.removeAtIndex(row)

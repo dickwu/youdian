@@ -64,6 +64,9 @@ class myinfo: UIViewController,UIImagePickerControllerDelegate,UINavigationContr
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
+    override func viewWillAppear(animated: Bool) {
+        MobClick.beginLogPageView("个人信息")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -79,6 +82,7 @@ class myinfo: UIViewController,UIImagePickerControllerDelegate,UINavigationContr
     }
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver("gotoFeedDetil", name: "gotoFeedDetil", object: nil)
+        MobClick.endLogPageView("个人信息")
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

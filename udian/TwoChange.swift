@@ -113,6 +113,10 @@ class TwoChange: UIViewController,UITableViewDataSource,UITableViewDelegate,UIWe
             AreNeedKeep = false
         }
         LocalData.CanJump = true
+        MobClick.beginLogPageView("详情页")
+    }
+    override func viewDidDisappear(animated: Bool) {
+        MobClick.endLogPageView("详情页")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -300,12 +304,16 @@ class TwoChange: UIViewController,UITableViewDataSource,UITableViewDelegate,UIWe
             print(allUrls)
             let parts = allUrls.componentsSeparatedByString("&,")
             print(parts)
-            if parts.count == 1{
-                let story = UIStoryboard(name: "Main", bundle: nil)//获取故事版
-                let filte = story.instantiateViewControllerWithIdentifier("webView") as! webViewer//定位视图
-                filte.url = request.URLString
-                self.AreNeedKeep = true
-                self.navigationController?.pushViewController(filte, animated: true)
+            if parts.count == 1 {
+                if AreLeft{
+                    let story = UIStoryboard(name: "Main", bundle: nil)//获取故事版
+                    let filte = story.instantiateViewControllerWithIdentifier("webView") as! webViewer//定位视图
+                    filte.url = request.URLString
+                    self.AreNeedKeep = true
+                    self.navigationController?.pushViewController(filte, animated: true)
+                }else{
+                    return true
+                }
                 
             }else{
                 

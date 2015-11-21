@@ -58,9 +58,11 @@ class settingMain: UIViewController {
             }
         }
         loadQuite()
+        MobClick.beginLogPageView("设置页")
     }
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver("gotoFeedDetil", name: "gotoFeedDetil", object: nil)
+        MobClick.endLogPageView("设置页")
     }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
@@ -206,7 +208,8 @@ class settingMain: UIViewController {
     }
     func loadVersion(){
         let version = UILabel(frame: CGRect(x: 8, y: nowFrame.height - 6, width: nowFrame.width - 16, height: 20))
-        version.text = "全民优点 V1.0"
+        let mainBund = JSON(NSBundle.mainBundle().infoDictionary!)
+        version.text = "全民优点 V\(mainBund["CFBundleShortVersionString"].stringValue)"
         version.textColor = UIColor.lightGrayColor()
         version.font = UIFont.systemFontOfSize(12)
         version.textAlignment = .Center
@@ -262,7 +265,9 @@ class settingMain: UIViewController {
             }
             case 3:
                 MobClick.event("ScoringBtn")
-                UIApplication.sharedApplication().openURL(NSURL(string: "itms-apps://itunes.apple.com/cn/app/quan-min-you-dian/id1032310386?l=en&mt=8")!)
+                //itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1032310386&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software
+                //itms-apps://itunes.apple.com/cn/app/quan-min-you-dian/id=1032310386?l=en&mt=8
+                UIApplication.sharedApplication().openURL(NSURL(string: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1032310386&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software")!)
             case 4:
                 if LocalData.CanShowShare{
                     LocalData.CanShowShare = false

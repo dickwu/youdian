@@ -52,6 +52,12 @@ class LoginMain: UIViewController,UITextFieldDelegate {
         idEnter.text = LocalData.userid
         checkAll()
     }
+    override func viewWillAppear(animated: Bool) {
+        MobClick.beginLogPageView("登录")
+    }
+    override func viewWillDisappear(animated: Bool) {
+        MobClick.endLogPageView("登录")
+    }
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }

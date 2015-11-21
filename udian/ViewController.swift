@@ -169,9 +169,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         NSNotificationCenter.defaultCenter().removeObserver("gotoFeedDetil", name: "gotoFeedDetil", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "SystemInfoUpdate", name: "SystemInfoUpdate", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushTofeed", name: "PushJump", object: nil)
+        MobClick.beginLogPageView("首页")
     }
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver("gotoFeedDetil", name: "gotoFeedDetil", object: nil)
+        MobClick.endLogPageView("首页")
     }
     func pullDown(){
         refreshControl.attributedTitle = NSAttributedString(string: "正在加载")

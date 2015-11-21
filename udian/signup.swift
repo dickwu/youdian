@@ -45,6 +45,10 @@ class signup: UIViewController,UITextFieldDelegate {
     
     override func viewWillAppear(animated: Bool) {
         //checkNext()
+        MobClick.beginLogPageView("注册")
+    }
+    override func viewWillDisappear(animated: Bool) {
+        MobClick.endLogPageView("注册")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
