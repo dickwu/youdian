@@ -87,14 +87,6 @@
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="99" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXs-pF-uQn">
-                                                    <rect key="frame" x="12" y="12.5" width="304" height="226.5"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQ6-4k-58c">
                                                     <rect key="frame" x="284" y="213.5" width="24" height="17"/>
                                                     <animations/>
@@ -171,7 +163,6 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="yQ6-4k-58c" secondAttribute="bottom" id="08f-7a-FHE"/>
                                                 <constraint firstItem="tYR-QQ-5bI" firstAttribute="leading" secondItem="3EU-P4-BS0" secondAttribute="leadingMargin" constant="13" id="1gz-Ro-ZQj"/>
                                                 <constraint firstItem="zNs-oU-2Y8" firstAttribute="leading" secondItem="CsT-x7-reK" secondAttribute="trailing" constant="4" id="2m1-GF-p9Q"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="mXs-pF-uQn" secondAttribute="bottom" constant="-8" id="4r9-W6-bAC"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Ahl-xs-Gdl" secondAttribute="trailing" constant="4" id="4xs-ee-QGg"/>
                                                 <constraint firstItem="Eza-nG-hhr" firstAttribute="leading" secondItem="3EU-P4-BS0" secondAttribute="leadingMargin" constant="4" id="6G0-Gb-QwT"/>
                                                 <constraint firstItem="tYR-QQ-5bI" firstAttribute="top" secondItem="3EU-P4-BS0" secondAttribute="topMargin" constant="13" id="6tD-OU-ExI"/>
@@ -179,7 +170,6 @@
                                                 <constraint firstItem="aPg-ty-oEP" firstAttribute="centerY" secondItem="yQ6-4k-58c" secondAttribute="centerY" id="9ez-MA-qU8"/>
                                                 <constraint firstItem="Ahl-xs-Gdl" firstAttribute="centerY" secondItem="3EU-P4-BS0" secondAttribute="centerY" id="9kF-hv-bkb"/>
                                                 <constraint firstItem="yQ6-4k-58c" firstAttribute="leading" secondItem="Dxb-jQ-Jnu" secondAttribute="trailing" id="DlS-dz-JHW"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="mXs-pF-uQn" secondAttribute="trailing" constant="4" id="HCm-hd-xID"/>
                                                 <constraint firstItem="zNs-oU-2Y8" firstAttribute="centerY" secondItem="yQ6-4k-58c" secondAttribute="centerY" id="JbE-51-PII"/>
                                                 <constraint firstItem="Dxb-jQ-Jnu" firstAttribute="centerY" secondItem="yQ6-4k-58c" secondAttribute="centerY" constant="1" id="Jf6-F8-2rp"/>
                                                 <constraint firstItem="yQ6-4k-58c" firstAttribute="trailing" secondItem="3EU-P4-BS0" secondAttribute="trailingMargin" constant="-12" id="JlM-WU-Bd3"/>
@@ -188,10 +178,8 @@
                                                 <constraint firstItem="Eza-nG-hhr" firstAttribute="trailing" secondItem="3EU-P4-BS0" secondAttribute="trailingMargin" constant="-4" id="Ps1-PB-uDn"/>
                                                 <constraint firstItem="Ahl-xs-Gdl" firstAttribute="leading" secondItem="3EU-P4-BS0" secondAttribute="leadingMargin" constant="4" id="RD4-OU-XSH"/>
                                                 <constraint firstItem="Ahl-xs-Gdl" firstAttribute="top" secondItem="tde-Ul-Ex0" secondAttribute="bottom" constant="-12" id="RcS-zt-FJ3"/>
-                                                <constraint firstItem="mXs-pF-uQn" firstAttribute="top" secondItem="3EU-P4-BS0" secondAttribute="topMargin" constant="4" id="YIl-bQ-wSn"/>
                                                 <constraint firstItem="Ahl-xs-Gdl" firstAttribute="centerX" secondItem="3EU-P4-BS0" secondAttribute="centerX" id="YNH-in-wAr"/>
                                                 <constraint firstItem="UHN-hE-mjC" firstAttribute="centerY" secondItem="yQ6-4k-58c" secondAttribute="centerY" id="bXh-YS-ioD"/>
-                                                <constraint firstItem="mXs-pF-uQn" firstAttribute="leading" secondItem="3EU-P4-BS0" secondAttribute="leadingMargin" constant="4" id="bl8-Su-jUw"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Eza-nG-hhr" secondAttribute="bottom" constant="-9" id="dzN-2X-aTb"/>
                                                 <constraint firstItem="CsT-x7-reK" firstAttribute="centerY" secondItem="yQ6-4k-58c" secondAttribute="centerY" id="j39-if-xW6"/>
                                                 <constraint firstItem="tde-Ul-Ex0" firstAttribute="leading" secondItem="3EU-P4-BS0" secondAttribute="leadingMargin" constant="32" id="oXU-zG-BfP"/>
@@ -236,15 +224,15 @@
                                                         <constraint firstAttribute="width" constant="21" id="gxq-ge-Xok"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFX-iH-1zj">
-                                                    <rect key="frame" x="235" y="181" width="24" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVo-IP-Cs7">
+                                                    <rect key="frame" x="186" y="181" width="24" height="17"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVo-IP-Cs7">
-                                                    <rect key="frame" x="186" y="181" width="24" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFX-iH-1zj">
+                                                    <rect key="frame" x="235" y="181" width="24" height="17"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

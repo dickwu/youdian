@@ -49,7 +49,7 @@ extension ViewController{
                 let lookNum = cell.viewWithTag(14) as! UILabel
                 let likeNum = cell.viewWithTag(15) as! UILabel
                 
-                let ShadeLable = cell.viewWithTag(99) as! UILabel
+
                 
                 commenNum.text = feedLists[row].comments
                 lookNum.text = feedLists[row].lookNum
@@ -73,37 +73,7 @@ extension ViewController{
                     }
                 }
                 
-                
-                var areNeeshow = false
-                backImage.image = nil
-//                SPic.dowmloadPic(feedLists[row].backImag, proce: { (pro) -> Void in
-//                    
-//                    areNeeshow = true
-//                    }) { (img) -> Void in
-//                        backImage.image = img
-//                        if areNeeshow{
-//                        ShadeLable.alpha = 1
-//                        UILabel.animateWithDuration(0.5, animations: { () -> Void in
-//                            ShadeLable.alpha = 0
-//                        })
-//                        }else{
-//                            ShadeLable.alpha = 0
-//                        }
-//                }
-                let manager = SDWebImageManager()
-                manager.downloadImageWithURL(NSURL(string: feedLists[row].backImag), options: SDWebImageOptions.LowPriority, progress: { (all, now) -> Void in
-                    areNeeshow = true
-                    }, completed: { (img, Error, ImageCacheType, Bool, URL) -> Void in
-                        backImage.image = img
-                        if areNeeshow{
-                            ShadeLable.alpha = 1
-                            UILabel.animateWithDuration(0.5, animations: { () -> Void in
-                                ShadeLable.alpha = 0
-                            })
-                        }else{
-                            ShadeLable.alpha = 0
-                        }
-                })
+                backImage.yy_setImageWithURL(NSURL(string:feedLists[row].backImag)!, options: [YYWebImageOptions.ProgressiveBlur , YYWebImageOptions.SetImageWithFadeAnimation])
                 
                 
                 SPic.dowmloadPic(feedLists[row].tipPic, proce: { (pro) -> Void in
@@ -432,11 +402,8 @@ extension ViewController{
         
         backImage.layer.masksToBounds = true
         backImage.layer.cornerRadius = 6
-        SPic.dowmloadPic(SearchTitles[row].backImag, proce: { (pro) -> Void in
-            
-            }) { (img) -> Void in
-                backImage.image = img
-        }
+        backImage.yy_setImageWithURL(NSURL(string:SearchTitles[row].backImag)!, options: [YYWebImageOptions.ProgressiveBlur , YYWebImageOptions.SetImageWithFadeAnimation])
+
         
         let MainTitle:NSString = SearchTitles[row].Tips
         let attri = NSMutableAttributedString(string: MainTitle as String)
@@ -452,6 +419,7 @@ extension ViewController{
         commenNum.text = SearchTitles[row].comments
         lookNum.text = SearchTitles[row].lookNum
         likeNum.text = SearchTitles[row].Likes
+        
         SPic.dowmloadPic(SearchTitles[row].tipPic, proce: { (pro) -> Void in
             
             }) { (img) -> Void in

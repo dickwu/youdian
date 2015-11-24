@@ -245,12 +245,8 @@ class TwoChange: UIViewController,UITableViewDataSource,UITableViewDelegate,UIWe
             tip.shadowColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.6)
             tip.shadowOffset = CGSize(width: 1.25, height: 1.25)
 
-            
-            SPic.dowmloadPic(boundFeeds[row].MainPic, proce: { (pro) -> Void in
-                
-                }, com: { (img) -> Void in
-                    backImage.image = img
-            })
+            backImage.yy_setImageWithURL(NSURL(string:boundFeeds[row].MainPic)!, options: [YYWebImageOptions.ProgressiveBlur , YYWebImageOptions.SetImageWithFadeAnimation])
+
             tip.text = boundFeeds[row].MainTitle
             senderPic.layer.cornerRadius = 12
             senderPic.layer.masksToBounds = true
