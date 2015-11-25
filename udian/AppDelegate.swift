@@ -118,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
         })
         //百度推送
-        BPush.registerChannel(launchOptions, apiKey: "cqzIjOHQlBS8H4NL6ro8Ts40", pushMode: BPushMode.Production, withFirstAction: "", withSecondAction: "", withCategory: "", isDebug: false)
+        BPush.registerChannel(launchOptions, apiKey: "cqzIjOHQlBS8H4NL6ro8Ts40", pushMode: BPushMode.Production, withFirstAction: "", withSecondAction: "", withCategory: "", isDebug: true)
         
         
         return shouldPerformAdditionalDelegateHandling
@@ -136,14 +136,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
     }
+    
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         let JPush = JSON(userInfo)
         print(JPush)
         
         BPush.handleNotification(userInfo)
-        if LocalData.AreOpenSound{
-            AudioServicesPlaySystemSound(1007)
-        }
+        
         //定义推送事件一般是@信息 —————— 系统消息也要有不一样的结构,注册一个通用函数以便全局可用
         if application.applicationState == UIApplicationState.Active{
             NSNotificationCenter.defaultCenter().postNotificationName("SystemInfoUpdate", object: nil)
@@ -167,8 +166,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSNotificationCenter.defaultCenter().postNotificationName("PushJump", object: nil)
     }
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        
-        
+        let JPush = JSON(userInfo)
+        print(JPush)
+        BPush.handleNotification(userInfo)
         
         
     }

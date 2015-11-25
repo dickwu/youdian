@@ -154,6 +154,8 @@
 		F69A3CFB1BC8F0FE0060CD4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F69A3CF91BC8F0FE0060CD4B /* Main.storyboard */; };
 		F69A3CFD1BC8F0FE0060CD4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F69A3CFC1BC8F0FE0060CD4B /* Assets.xcassets */; };
 		F6AD3D231BEF5F160092DE8D /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AD3D221BEF5F160092DE8D /* RefreshView.swift */; };
+		F6B4CE111C0467B700BB630E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B4CE101C0467B700BB630E /* CoreTelephony.framework */; };
+		F6B4CE201C0467E200BB630E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B4CE1F1C0467E200BB630E /* Foundation.framework */; };
 		F6ED23EF1BD9EE2B00A45F2B /* firstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ED23EE1BD9EE2B00A45F2B /* firstView.swift */; };
 /* End PBXBuildFile section */
 
@@ -556,6 +558,8 @@
 		F69A3CFC1BC8F0FE0060CD4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F69A3D011BC8F0FE0060CD4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6AD3D221BEF5F160092DE8D /* RefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
+		F6B4CE101C0467B700BB630E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		F6B4CE1F1C0467E200BB630E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F6ED23EE1BD9EE2B00A45F2B /* firstView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = firstView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -564,6 +568,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6B4CE201C0467E200BB630E /* Foundation.framework in Frameworks */,
+				F6B4CE111C0467B700BB630E /* CoreTelephony.framework in Frameworks */,
 				F67BE19F1BCA8AC300BCF678 /* AudioToolbox.framework in Frameworks */,
 				F648DDE81BC90A4C00F978DD /* libWeChatSDK.a in Frameworks */,
 				F648DDEC1BC90A4C00F978DD /* ShareSDKConnector.framework in Frameworks */,
@@ -734,6 +740,8 @@
 		F648DC681BC9075200F978DD /* LocalFrame */ = {
 			isa = PBXGroup;
 			children = (
+				F6B4CE1F1C0467E200BB630E /* Foundation.framework */,
+				F6B4CE101C0467B700BB630E /* CoreTelephony.framework */,
 				F67BE19E1BCA8AC300BCF678 /* AudioToolbox.framework */,
 				F648DD6D1BC908F100F978DD /* libsqlite3.tbd */,
 				F648DD6B1BC908EA00F978DD /* JavaScriptCore.framework */,

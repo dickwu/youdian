@@ -20,7 +20,7 @@ class webViewer: UIViewController,UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         load()
-        let enurl = url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+        let enurl = url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
         web.loadRequest(NSURLRequest(URL: NSURL(string: enurl!)!))
         // Do any additional setup after loading the view.
         
