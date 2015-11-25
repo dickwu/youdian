@@ -19,7 +19,7 @@ class subFeed{
 
 
 
-class TwoChange: UIViewController,UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate{
+class TwoChange: UIViewController,UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate,UIGestureRecognizerDelegate{
     
     var AreTwoType = true
     var IdOfFeed = String()
@@ -150,6 +150,13 @@ class TwoChange: UIViewController,UITableViewDataSource,UITableViewDelegate,UIWe
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideshare", name: "hideShare", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushTofeed", name: "PushJump", object: nil)
         LocalData.CanShowShare = true
+        //手势返回
+        let backGesture = UISwipeGestureRecognizer()
+        backGesture.direction = .Right
+        backGesture.addTarget(self, action: "swipeback")
+        backGesture.delegate = self
+        self.table.addGestureRecognizer(backGesture)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -946,6 +953,14 @@ class TwoChange: UIViewController,UITableViewDataSource,UITableViewDelegate,UIWe
                     //share.allback.backgroundColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.5)
             }
         }
+    }
+    
+    func swipeback(){
+        LocalData.CanJump = true
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     
     func hideshare(){

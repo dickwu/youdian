@@ -48,7 +48,7 @@ private class OneComment {
 
 
 
-class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITableViewDelegate{
+class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate{
     //接口参数
     var AreChoiced = false
     var ChoicedLine = 0
@@ -223,6 +223,12 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushTofeed", name: "PushJump", object: nil)
         
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "AddRightBar", userInfo: nil, repeats: false)
+        //手势返回
+        let backGesture = UISwipeGestureRecognizer()
+        backGesture.direction = .Right
+        backGesture.addTarget(self, action: "swipeback")
+        backGesture.delegate = self
+        self.table.addGestureRecognizer(backGesture)
         
     }
     func AddRightBar(){
@@ -1907,7 +1913,13 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
     @IBAction func clear(sender: AnyObject) {
         commentText.resignFirstResponder()
     }
-    
+    func swipeback(){
+        LocalData.CanJump = true
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     @IBAction func gotoTop(sender: AnyObject) {
         print("跳转")
         let Jumpindex = NSIndexPath(forRow: 0, inSection: 0)

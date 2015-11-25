@@ -9,9 +9,7 @@
 import UIKit
 class MeaageData:NSObject,UITableViewDataSource,UITableViewDelegate{
     let nowFrame = UIScreen.mainScreen().applicationFrame
-//    var Types = ["0","0","0","0","0","1"]
-//    var Message = ["0","0","0","0","0","1"]
-//    var Times = ["0","0","0","0","0","1"]
+
     // MARK: - Table view data source
     
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class settingMain: UIViewController {
+class settingMain: UIViewController,UIGestureRecognizerDelegate {
     
     let nowFrame = UIScreen.mainScreen().applicationFrame
     @IBOutlet weak var messageNum: UILabel!
@@ -38,6 +38,12 @@ class settingMain: UIViewController {
         //hideShare
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideshare", name: "hideShare", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushTofeed", name: "PushJump", object: nil)
+        //手势返回
+        let backGesture = UISwipeGestureRecognizer()
+        backGesture.direction = .Right
+        backGesture.addTarget(self, action: "swipeback")
+        backGesture.delegate = self
+        self.view.addGestureRecognizer(backGesture)
     }
     override func viewDidAppear(animated: Bool) {
         if canload{
@@ -468,6 +474,12 @@ class settingMain: UIViewController {
     }
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    func swipeback(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     func hideshare(){
         LocalData.CanShowShare = false

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class myinfo: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class myinfo: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIGestureRecognizerDelegate {
     
     let allFrame = UIScreen.mainScreen().applicationFrame
     let nowFrame = UIScreen.mainScreen().applicationFrame
@@ -79,6 +79,12 @@ class myinfo: UIViewController,UIImagePickerControllerDelegate,UINavigationContr
         SystemInfoUpdate()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "SystemInfoUpdate", name: "SystemInfoUpdate", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushTofeed", name: "PushJump", object: nil)
+        //手势返回
+        let backGesture = UISwipeGestureRecognizer()
+        backGesture.direction = .Right
+        backGesture.addTarget(self, action: "swipeback")
+        backGesture.delegate = self
+        self.view.addGestureRecognizer(backGesture)
     }
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver("gotoFeedDetil", name: "gotoFeedDetil", object: nil)
@@ -770,6 +776,12 @@ class myinfo: UIViewController,UIImagePickerControllerDelegate,UINavigationContr
     
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    func swipeback(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 
 }
