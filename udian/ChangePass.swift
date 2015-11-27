@@ -100,12 +100,12 @@ class ChangePass: UIViewController ,UITextFieldDelegate{
     @IBAction func goback(sender: AnyObject) {
         OtherAlert = UIAlertView(title: "正在修改密码" , message: nil, delegate: nil, cancelButtonTitle: nil)
         OtherAlert.show()
-        APIPOST.ChangePass(newPass.text!.sha512()!.uppercaseString, com: { (res) -> Void in
+        APIPOST.ChangePass(newPass.text!.sha512().uppercaseString, com: { (res) -> Void in
             print(res)
             self.OtherAlert.dismissWithClickedButtonIndex(0, animated: false)
             if res["ResultData"]["isSuccess"].stringValue == "true"{
                 LocalData.userPWD = self.newPass.text!
-                LocalData.SuserPWD = self.newPass.text!.sha512()!.uppercaseString
+                LocalData.SuserPWD = self.newPass.text!.sha512().uppercaseString
                 self.errorMessage("提示", info: "密码修改成功")
                 APIPOST.UserLogin { (res, err) -> Void in
                     print(res)

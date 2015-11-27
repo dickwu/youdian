@@ -106,12 +106,12 @@ class PassNew: UIViewController {
                 if CanPassSave[2]{
                     OtherAlert = UIAlertView(title: "正在修改密码" , message: nil, delegate: nil, cancelButtonTitle: nil)
                     OtherAlert.show()
-                    APIPOST.ChangePass(PassInputs[1].text!.sha512()!.uppercaseString, com: { (res) -> Void in
+                    APIPOST.ChangePass(PassInputs[1].text!.sha512().uppercaseString, com: { (res) -> Void in
                         print(res)
                         self.OtherAlert.dismissWithClickedButtonIndex(0, animated: false)
                         if res["ResultData"]["isSuccess"].stringValue == "true"{
                             LocalData.userPWD = self.PassInputs[1].text!
-                            LocalData.SuserPWD = self.PassInputs[1].text!.sha512()!.uppercaseString
+                            LocalData.SuserPWD = self.PassInputs[1].text!.sha512().uppercaseString
                             self.errorMessage("提示", info: "密码修改成功")
                             self.navigationController?.popViewControllerAnimated(true)
                         }else{

@@ -617,7 +617,7 @@ class myinfo: UIViewController,UIImagePickerControllerDelegate,UINavigationContr
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd/mm/ss"
         let text = dateFormatter.stringFromDate(NSDate())
-        let picName = (LocalData.userid + text).sha1()!
+        let picName = (LocalData.userid + text).sha1()
         print(picName)
         self.PicProcess.frame = CGRect(x: 30, y: 30, width: 40, height: 40)
         self.headPic.addSubview(PicProcess)

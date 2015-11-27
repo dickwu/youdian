@@ -121,7 +121,7 @@ class APIPOST {
         let data = JSON(dataDic).description
         let key = self.getCode()
         print(data)
-        let AesData = secret.AesEncrypt(key.md5()!.uppercaseString, data: data)!
+        let AesData = secret.AesEncrypt(key.md5().uppercaseString, data: data)
         let parame = ["UserID":key,"Data":AesData]
         print(parame)
         Alamofire.request(.POST, url, parameters: parame,encoding: ParameterEncoding.URL).responseJSON { (response) -> Void in
@@ -138,7 +138,7 @@ class APIPOST {
         let dataDic = ["phone":phone.toUInt()!,"pwd":pwd,"nickname":nickname,"headphoto":headphoto,"birthday":birthday,"gender":gender]
         let data = JSON(dataDic).description
         let key = self.getCode()
-        let AesData = secret.AesEncrypt(key.md5()!.uppercaseString, data: data)!
+        let AesData = secret.AesEncrypt(key.md5().uppercaseString, data: data)
         let parame = ["UserID":key,"Data":AesData]
         PostData(url, parame: parame) { (res, err) -> Void in
             if res == nil{
@@ -159,10 +159,10 @@ class APIPOST {
     //用户登录
     static func UserLogin(com:((res:Bool,err:String?)->Void)){
         let url = Connect.domain + "LoginInterfaceHandler.ashx?msg=Login"
-        let dataDic = ["phone":LocalData.userid,"pwd":LocalData.userPWD.sha512()!.uppercaseString]
+        let dataDic = ["phone":LocalData.userid,"pwd":LocalData.userPWD.sha512().uppercaseString]
         let data = JSON(dataDic).description
         let key = self.getCode()
-        let AesData = secret.AesEncrypt(key.md5()!.uppercaseString, data: data)!
+        let AesData = secret.AesEncrypt(key.md5().uppercaseString, data: data)
         let parame = ["UserID":key,"Data":AesData]
         PostData(url, parame: parame) { (res, err) -> Void in
             if res == nil{
@@ -196,7 +196,7 @@ class APIPOST {
         let dataDic = ["phone":LocalData.userid,"InformationType":InformationType,"InformationValue":InformationValue]
         let data = JSON(dataDic).description
         let key = self.getCode()
-        let AesData = secret.AesEncrypt(key.md5()!.uppercaseString, data: data)!
+        let AesData = secret.AesEncrypt(key.md5().uppercaseString, data: data)
         let parame = ["UserID":key,"Data":AesData]
         PostData(url, parame: parame) { (res, err) -> Void in
             if res == nil{

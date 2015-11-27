@@ -140,7 +140,7 @@ class LoginMain: UIViewController,UITextFieldDelegate {
         MobClick.event("LoginBtnClicked")
         APIPOST.UserLogin { (res, err) -> Void in
             if res{
-                LocalData.SuserPWD = LocalData.userPWD.sha512()!.uppercaseString
+                LocalData.SuserPWD = LocalData.userPWD.sha512().uppercaseString
                 self.disShow()
                 
             }else{

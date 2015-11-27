@@ -308,12 +308,12 @@ class baseMessage: UIViewController,UIImagePickerControllerDelegate,UINavigation
         NextBut.backgroundColor = UIColor.lightGrayColor()
         NextBut.setTitle("注册中", forState: UIControlState.Normal)
         MobClick.event("CompletBtnClicked")
-        APIPOST.addnewone(LocalData.KeepUserid, pwd: LocalData.KeepPass.sha512()!.uppercaseString, nickname: nickName.text!, headphoto: LocalData.KeepuserPic, birthday: birthDay.text!, gender: Sex.text!) { (res, err) -> Void in
+        APIPOST.addnewone(LocalData.KeepUserid, pwd: LocalData.KeepPass.sha512().uppercaseString, nickname: nickName.text!, headphoto: LocalData.KeepuserPic, birthday: birthDay.text!, gender: Sex.text!) { (res, err) -> Void in
             if res{
                 //注册成功
                 LocalData.userid = LocalData.KeepUserid
                 LocalData.userPWD = LocalData.KeepPass
-                LocalData.SuserPWD = LocalData.userPWD.sha512()!.uppercaseString
+                LocalData.SuserPWD = LocalData.userPWD.sha512().uppercaseString
                 self.disShow()
                 APIPOST.UserLogin { (res, err) -> Void in
                     print(res)
@@ -417,7 +417,7 @@ class baseMessage: UIViewController,UIImagePickerControllerDelegate,UINavigation
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd/mm/ss"
         let text = dateFormatter.stringFromDate(NSDate())
-        let picName = (LocalData.userid + text).sha1()!
+        let picName = (LocalData.userid + text).sha1()
         self.PicProcess.frame = CGRect(x: 30, y: 30, width: 40, height: 40)
         self.headPic.addSubview(PicProcess)
         SPic.uploadPicWithPro(picName, Pic: self.headPic.image!, com: { (succsess, res) -> Void in

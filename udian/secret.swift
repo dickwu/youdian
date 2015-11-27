@@ -10,29 +10,27 @@ import Foundation
 import CryptoSwift
 class secret {
     //md5已经集成在CryptoSwift中
-    static func AesEncrypt( key:String, data:String)->String?{
-        let keydata = key.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)?.arrayOfBytes()
-        //let jia = AES(key: key, iv: "13916728775", blockMode: CipherBlockMode.ECB)
-        let jia = AES(key: keydata!, blockMode: CipherBlockMode.ECB)
-        //let jia = CryptoSwift.AES(key: key.md5()!.uppercaseString, iv: "13916728775", blockMode: CryptoSwift.CipherBlockMode.ECB)
+    //AES加密
+    static func AesEncrypt( key:String, data:String)->String{
+        let jia = try! AES(key: key, iv: "", blockMode: CipherBlockMode.ECB)
         let mydata = data.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         let byte = mydata?.arrayOfBytes()
-        //let jiares =  jia?.encrypt(byte!, padding: CryptoSwift.PKCS7())
-        let jiares = try! jia?.encrypt(byte!, padding: PKCS7())
-        let resdata = NSData(bytes: jiares!, length: jiares!.count)
+        let jiares = try! jia.encrypt(byte!, padding: PKCS7())
+        let resdata = NSData(bytes: jiares, length: jiares.count)
         let jiastrres = resdata.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
         return jiastrres
     }
-    
-    static func AesDeEncrypt(key:String,data:String)->String?{
-        let keydata = key.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)?.arrayOfBytes()
-        let jie = AES(key: keydata!, blockMode: CipherBlockMode.ECB)
-        let mydata = data.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-        let byte = mydata?.arrayOfBytes()
-        let jieRes =  try! jie?.decrypt(byte!, padding: PKCS7())
-        let resdata = NSData(bytes: jieRes!, length: jieRes!.count)
-        let jiastrres = resdata.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
-        return jiastrres
+    //AES解密
+    static func AesDecrypt( key:String, data:String)->String{
+        let jie = try! AES(key: key, iv: "", blockMode: CipherBlockMode.ECB)
+        let nsdata = NSData(base64EncodedString: data, options: NSDataBase64DecodingOptions(rawValue: 0))
+        let byte = nsdata?.arrayOfBytes()
+        let jieRes = try! jie.decrypt(byte!, padding: PKCS7())
+        let resdata = NSData(bytes: jieRes, length: jieRes.count)
+        let jiestrres = resdata.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+        let dedata = NSData(base64EncodedString: jiestrres, options: NSDataBase64DecodingOptions(rawValue: 0))
+        let base64Decoded = NSString(data: dedata!, encoding: NSUTF8StringEncoding) as! String
+        return base64Decoded
     }
     
 }
