@@ -28,9 +28,7 @@ extension UIViewController:ViewControllerDeleget{
         }
     }
     func disShow() {
-        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
-        })
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     public func errorMessage(title:String,info:String){
         let alert = UIAlertView(title: title, message: info, delegate: self, cancelButtonTitle: "确定")

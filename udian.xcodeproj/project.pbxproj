@@ -160,6 +160,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F61635031C0EF9B200E11E61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F648DC351BC9071600F978DD /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5596BDBB1BC8F220007E38D5;
+			remoteInfo = "CryptoSwift watchOS";
+		};
+		F61635051C0EF9B200E11E61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F648DC351BC9071600F978DD /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75D614BF1BD844F2001358B2;
+			remoteInfo = "CryptoSwift tvOS";
+		};
+		F61635071C0EF9B200E11E61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F648DC351BC9071600F978DD /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75DF77721BC8EB59006E9520;
+			remoteInfo = "CryptoSwift OSX";
+		};
 		F648DC2B1BC9070F00F978DD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F648DC231BC9070F00F978DD /* Alamofire.xcodeproj */;
@@ -717,6 +738,9 @@
 			isa = PBXGroup;
 			children = (
 				F648DC3C1BC9071600F978DD /* CryptoSwift.framework */,
+				F61635041C0EF9B200E11E61 /* CryptoSwift.framework */,
+				F61635061C0EF9B200E11E61 /* CryptoSwift.framework */,
+				F61635081C0EF9B200E11E61 /* CryptoSwift.framework */,
 				F648DC3E1BC9071600F978DD /* CryptoSwiftTests.xctest */,
 			);
 			name = Products;
@@ -1277,6 +1301,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		F61635041C0EF9B200E11E61 /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = F61635031C0EF9B200E11E61 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F61635061C0EF9B200E11E61 /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = F61635051C0EF9B200E11E61 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F61635081C0EF9B200E11E61 /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = F61635071C0EF9B200E11E61 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		F648DC2C1BC9070F00F978DD /* Alamofire.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;

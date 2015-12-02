@@ -62,9 +62,9 @@ class TwoChange: UIViewController,UITableViewDataSource,UITableViewDelegate,UIWe
     var allNum:CGFloat = 0
     
     let coler1 = UIColor(red: 253/255, green: 140/255, blue: 103/255, alpha: 1)
-    let coler2 = UIColor(red: 253/255, green: 154/255, blue: 26/255,  alpha: 1)
+    let coler2 = UIColor(red: 44/255,  green: 152/255, blue: 201/255, alpha: 1)
     let coler3 = UIColor(red: 149/255, green: 204/255, blue: 61/255,  alpha: 1)
-    let coler4 = UIColor(red: 44/255,  green: 152/255, blue: 201/255, alpha: 1)
+    let coler4 = UIColor(red: 253/255, green: 154/255, blue: 26/255,  alpha: 1)
     let coler5 = UIColor(red: 149/255, green: 149/255, blue: 149/255, alpha: 1)
     
     let angle = CAShapeLayer()

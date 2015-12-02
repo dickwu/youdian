@@ -113,16 +113,16 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
     
     let ColorChoiced = [
         UIColor(red: 185/255, green: 88/255, blue: 88/255, alpha: 1),
-        UIColor(red: 188/255, green: 123/255, blue: 39/255,  alpha: 1),
-        UIColor(red: 120/255, green: 157/255, blue: 63/255,  alpha: 1),
         UIColor(red: 53/255,  green: 122/255, blue: 153/255, alpha: 1),
+        UIColor(red: 120/255, green: 157/255, blue: 63/255,  alpha: 1),
+        UIColor(red: 188/255, green: 123/255, blue: 39/255,  alpha: 1),
         UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1)
     ]
     let ColorShow = [
         UIColor(red: 253/255, green: 140/255, blue: 103/255, alpha: 1),
-        UIColor(red: 253/255, green: 154/255, blue: 26/255,  alpha: 1),
-        UIColor(red: 149/255, green: 204/255, blue: 61/255,  alpha: 1),
         UIColor(red: 44/255,  green: 152/255, blue: 201/255, alpha: 1),
+        UIColor(red: 149/255, green: 204/255, blue: 61/255,  alpha: 1),
+        UIColor(red: 253/255, green: 154/255, blue: 26/255,  alpha: 1),
         UIColor(red: 149/255, green: 149/255, blue: 149/255, alpha: 1)
     ]
     //评论数据
