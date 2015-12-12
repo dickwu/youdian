@@ -712,6 +712,8 @@ class myinfo: UIViewController,UIImagePickerControllerDelegate,UINavigationContr
                         newInfo.Message = one["infodetail"].stringValue
                         newInfo.otherhidename = one["commentname"].stringValue
                         newInfo.Times = one["SaveTime"].stringValue
+                        newInfo.ReadTime = one["ReadTime"].stringValue
+                        newInfo.Commentid = one["commentid"].stringValue
                         newInfo.countHight()
                         LocalData.sysInfo.append(newInfo)
                         

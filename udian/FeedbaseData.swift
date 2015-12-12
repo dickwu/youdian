@@ -50,7 +50,7 @@ class FeedbaseData {
             }
 
             for user in db.prepare(feeds.filter(feedid == feed)) {
-                print("id: \(user[feedid]), commentFloor: \(user[commentid])")
+                print("存入id: \(user[feedid]), commentFloor: \(user[commentid])")
             }
             
         }catch{
@@ -67,7 +67,7 @@ class FeedbaseData {
             let feeds = Table("feed")
             var AreNeedCreat = true
             for user in db.prepare(feeds.filter(feedid == feed)) {
-                //print("id: \(user[feedid]), commentid: \(user[commentid])")
+                print("读出id: \(user[feedid]), commentid: \(user[commentid])")
                 AreNeedCreat = false
                 comment = user[commentid]
             }

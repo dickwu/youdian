@@ -53,7 +53,7 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
     var AreChoiced = false
     var ChoicedLine = 0
     var feedId = String()
-    var CommentTexts = ["跑男集结号版","芒果虐心版","经典TVB版","TFBOYS版","我要保留自己的意见"] //各个投票的标题
+    var CommentTexts = ["","","","",""] //各个投票的标题
     var CommentIDS = [String]()
     var AreNeedToend = false
     
@@ -99,7 +99,7 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
     var AreShouldHide = false
     var AreEmoji = true
     let nowFrame = UIScreen.mainScreen().applicationFrame
-    
+    var savedhight:CGFloat = 0
 
     //消息
     let Mes = UITableView()
@@ -137,6 +137,8 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
     var AreNeedGetNew = true
     var OtherAlert = UIAlertView()
     var AreNeedJumpToCell = false
+    
+    
 
     override func viewWillAppear(animated: Bool) {
         
@@ -147,22 +149,6 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
         }else{
             JumpGetData()
         }
-//        let choicedid = FeedbaseData.getsavedCommentid(feedId)
-//        if choicedid == "0"{
-//            AreChoiced = false
-//            
-//        }else{
-//            AreChoiced = true
-//            
-//            for i in 0...CommentIDS.count-1{
-//                if CommentIDS[i] == choicedid{
-//                    ChoicedLine = i
-//                    break
-//                }
-//            }
-//            
-//            
-//        }
         
         NSNotificationCenter.defaultCenter().removeObserver("gotoFeedDetil", name: "gotoFeedDetil", object: nil)
         MobClick.beginLogPageView("评论页")
@@ -197,10 +183,22 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
         self.table.tableFooterView = tblView
         //去中间间隔线
         self.table.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        //多手势响应
+        table.userInteractionEnabled = true
         //长按手势
-        let LongTouchGesture = UILongPressGestureRecognizer(target: self, action: "showReport")
+        let LongTouchGesture = UILongPressGestureRecognizer(target: self, action: "showReport:")
         LongTouchGesture.minimumPressDuration = 0.5
-        self.table.addGestureRecognizer(LongTouchGesture)
+        LongTouchGesture.delegate = self
+        self.view.addGestureRecognizer(LongTouchGesture)
+        //优先点击手势
+
+        //手势返回
+        let backGesture = UISwipeGestureRecognizer()
+        backGesture.direction = .Right
+        backGesture.addTarget(self, action: "swipeback:")
+        backGesture.delegate = self
+        self.table.addGestureRecognizer(backGesture)
         
         if AreChoiced{
             commentText.layer.borderWidth = 3
@@ -223,12 +221,7 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushTofeed", name: "PushJump", object: nil)
         
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "AddRightBar", userInfo: nil, repeats: false)
-        //手势返回
-        let backGesture = UISwipeGestureRecognizer()
-        backGesture.direction = .Right
-        backGesture.addTarget(self, action: "swipeback")
-        backGesture.delegate = self
-        self.table.addGestureRecognizer(backGesture)
+        
         
     }
     func AddRightBar(){
@@ -249,18 +242,25 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
+
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        print("检测到触碰")
+        let point = touch.locationInView(view)
+        savedhight = point.y
+        //print(savedhight)
+        return true
+    }
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     func showKeyBoard(notification:NSNotification){
         let info = notification.userInfo!
         let keyFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-//        var index = NSIndexPath()
-//        if len == 0{
-//            index = NSIndexPath(forRow: 0, inSection: 0)
-//        }else{
-//            index = NSIndexPath(forRow: self.comments.count - 1, inSection: 0)
-//            //self.table.scrollToRowAtIndexPath(index, atScrollPosition: .Bottom, animated: true)
-//            
-//        }
         
+
+        if nowFrame.height - savedhight + 20 < keyFrame.height + 110{
+            table.contentOffset.y += keyFrame.height - (nowFrame.height - savedhight + 20) + 90
+        }
         
         
         hightForKeyboard.constant = keyFrame.height
@@ -1147,6 +1147,8 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
                         newInfo.Message = one["infodetail"].stringValue
                         newInfo.otherhidename = one["commentname"].stringValue
                         newInfo.Times = one["SaveTime"].stringValue
+                        newInfo.ReadTime = one["ReadTime"].stringValue
+                        newInfo.Commentid = one["commentid"].stringValue
                         newInfo.countHight()
                         LocalData.sysInfo.append(newInfo)
                         
@@ -1175,7 +1177,7 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
         APIPOST.SystemInfoList({ (res) -> Void in
             LocalData.UnreadNum = 0
             let datas = JSON(res)["data"].arrayValue
-            print(datas)
+            //print(datas)
             LocalData.sysInfo = [SystemInfo]()
             for one in datas{
                 let newInfo = SystemInfo()
@@ -1246,7 +1248,7 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
                     if res["success"].stringValue == "true"{
                         self.AreChoiced = true
                         self.commentText.becomeFirstResponder()
-                        FeedbaseData.saveChoicedId(self.feedId, comment: self.CommentIDS[row])
+                        //FeedbaseData.saveChoicedId(self.feedId, comment: self.CommentIDS[row])
                         MobClick.event("Vote")
                     }else{
                         self.errorMessage("提示", info: "已经投票过了")
@@ -1326,6 +1328,7 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
     }
     
     func atOther(sender:UIButton){
+        
         let row = Int(sender.titleLabel!.text!)!
         if !AreChoiced{
             showDiffrentChoice()
@@ -1609,7 +1612,7 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
     func updatedata(){
         print("评论列表\(feedId)")
         APIPOST.CommentList(feedId) { (res) -> Void in
-            print(res)
+            //print(res)
             self.activityMore.stopAnimating()
             self.comments = [OneComment]()
             self.table.reloadData()
@@ -1679,7 +1682,7 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
         let floor = FeedbaseData.getsavedCommentid(feedId)
         print("楼层是\(floor)")
         APIPOST.JumpToCommentList(feedId, startindex: floor) { (res) -> Void in
-            print(res)
+            //print(res)
             self.activityMore.stopAnimating()
             
             self.comments = [OneComment]()
@@ -1873,7 +1876,8 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
         }
         
     }
-    func showReport(){
+    func showReport(sender:UIGestureRecognizer){
+        print("长按")
         if SavedLine != -1{
             let action = UIAlertController(title: "举报不良信息", message: "选取举报类型", preferredStyle: UIAlertControllerStyle.ActionSheet)
             let op0 = UIAlertAction(title: "情色相关", style: UIAlertActionStyle.Default, handler: {(actionSheet: UIAlertAction!)in (self.postBad("情色相关"))})
@@ -1913,13 +1917,11 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
     @IBAction func clear(sender: AnyObject) {
         commentText.resignFirstResponder()
     }
-    func swipeback(){
+    func swipeback(sender:UIPanGestureRecognizer){
         LocalData.CanJump = true
         self.navigationController?.popViewControllerAnimated(true)
     }
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
+    
     @IBAction func gotoTop(sender: AnyObject) {
         print("跳转")
         let Jumpindex = NSIndexPath(forRow: 0, inSection: 0)
@@ -1927,7 +1929,9 @@ class Comment: UIViewController,UITextViewDelegate,UITableViewDataSource,UITable
     }
     
     
-    
+    override func shouldAutomaticallyForwardRotationMethods() -> Bool {
+        return true
+    }
     
     
 }

@@ -80,7 +80,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var searchback = UIView()
     //下拉刷新
     var refreshControl = UIRefreshControl()
-    //let refresh = RefreshView()
     
     
     
@@ -273,25 +272,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             }
         }
     }
-    //删除--------------------------------
-    /*
-    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.Delete
-    }
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            print("删除")
-            //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }*/
-    //---------------------------------------
+
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         var cell = UITableViewCell()
@@ -328,13 +309,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         MobClick.event("Search")
         search.resignFirstResponder()
         searchOne()
-//        if searchBar.text == ""{
-//            searchback.removeFromSuperview()
-//            self.view.addSubview(searchback)
-//        }else{
-//            searchback.removeFromSuperview()
-//            
-//        }
+
     }
     func SearchCancle(){
         AreNotAtSearch = true
@@ -477,6 +452,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                         newInfo.Message = one["infodetail"].stringValue
                         newInfo.otherhidename = one["commentname"].stringValue
                         newInfo.Times = one["SaveTime"].stringValue
+                        newInfo.ReadTime = one["ReadTime"].stringValue
+                        newInfo.Commentid = one["commentid"].stringValue
                         newInfo.countHight()
                         LocalData.sysInfo.append(newInfo)
                         
@@ -505,7 +482,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         APIPOST.SystemInfoList({ (res) -> Void in
             LocalData.UnreadNum = 0
             let datas = JSON(res)["data"].arrayValue
-            //print(datas)
+            print(datas)
             LocalData.sysInfo = [SystemInfo]()
             for one in datas{
                 let newInfo = SystemInfo()

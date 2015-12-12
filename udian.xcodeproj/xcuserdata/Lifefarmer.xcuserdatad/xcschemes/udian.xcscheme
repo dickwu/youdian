@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0720"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DCE7BB791B7434F90040D364"
-               BuildableName = "SQLiteCipher.framework"
-               BlueprintName = "SQLiteCipher iOS"
-               ReferencedContainer = "container:SQLite.xcodeproj">
+               BlueprintIdentifier = "F69A3CF11BC8F0FD0060CD4B"
+               BuildableName = "udian.app"
+               BlueprintName = "udian"
+               ReferencedContainer = "container:udian.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,27 +26,16 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DCE7BB821B7434F90040D364"
-               BuildableName = "SQLiteCipher iOS Tests.xctest"
-               BlueprintName = "SQLiteCipher iOS Tests"
-               ReferencedContainer = "container:SQLite.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DCE7BB791B7434F90040D364"
-            BuildableName = "SQLiteCipher.framework"
-            BlueprintName = "SQLiteCipher iOS"
-            ReferencedContainer = "container:SQLite.xcodeproj">
+            BlueprintIdentifier = "F69A3CF11BC8F0FD0060CD4B"
+            BuildableName = "udian.app"
+            BlueprintName = "udian"
+            ReferencedContainer = "container:udian.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -62,15 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DCE7BB791B7434F90040D364"
-            BuildableName = "SQLiteCipher.framework"
-            BlueprintName = "SQLiteCipher iOS"
-            ReferencedContainer = "container:SQLite.xcodeproj">
+            BlueprintIdentifier = "F69A3CF11BC8F0FD0060CD4B"
+            BuildableName = "udian.app"
+            BlueprintName = "udian"
+            ReferencedContainer = "container:udian.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -80,15 +70,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DCE7BB791B7434F90040D364"
-            BuildableName = "SQLiteCipher.framework"
-            BlueprintName = "SQLiteCipher iOS"
-            ReferencedContainer = "container:SQLite.xcodeproj">
+            BlueprintIdentifier = "F69A3CF11BC8F0FD0060CD4B"
+            BuildableName = "udian.app"
+            BlueprintName = "udian"
+            ReferencedContainer = "container:udian.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

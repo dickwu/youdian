@@ -10,7 +10,7 @@
       - [Read-Write Databases](#read-write-databases)
       - [Read-Only Databases](#read-only-databases)
       - [In-Memory Databases](#in-memory-databases)
-    - [A Note on Thread-Safety](#a-note-on-thread-safety)
+      - [Thread-Safety](#thread-safety)
   - [Building Type-Safe SQL](#building-type-safe-sql)
     - [Expressions](#expressions)
       - [Compound Expressions](#compound-expressions)
@@ -99,13 +99,13 @@ To install SQLite.swift as an Xcode sub-project:
 
  1. Drag the **SQLite.xcodeproj** file into your own project. ([Submodule](http://git-scm.com/book/en/Git-Tools-Submodules), clone, or [download](https://github.com/stephencelis/SQLite.swift/archive/master.zip) the project first.)
 
-    ![Installation](Resources/installation@2x.png)
+    ![Installation Screen Shot](Documentation/Resources/installation@2x.png)
 
- 2. In your target’s **Build Phases**, add **SQLite** to the **Target Dependencies** build phase.
+ 2. In your target’s **General** tab, click the **+** button under **Linked Frameworks and Libraries**.
 
- 3. Add **SQLite.framework** to the **Link Binary With Libraries** build phase.
+ 3. Select the appropriate **SQLite.framework** for your platform.
 
- 4. Add **SQLite.framework** to a **Copy Files** build phase with a **Frameworks** destination. (Add a new build phase if need be.)
+ 4. **Add**.
 
 You should now be able to `import SQLite` from any of your target’s source files and begin using SQLite.swift.
 
@@ -155,7 +155,7 @@ import SQLite
 
 ### Connecting to a Database
 
-Database connections are established using the `Database` class. A database is initialized with a path. SQLite will attempt to create the database file if it does not already exist.
+Database connections are established using the `Connection` class. A connection is initialized with a path to a database. SQLite will attempt to create the database file if it does not already exist.
 
 ``` swift
 let db = try Connection("path/to/db.sqlite3")
@@ -220,9 +220,24 @@ let db = try Connection(.Temporary)
 In-memory databases are automatically deleted when the database connection is closed.
 
 
-### A Note on Thread-Safety
+#### Thread-Safety
 
-> _Note:_ Every database comes equipped with its own serial queue for statement execution and can be safely accessed across threads. Threads that open transactions and savepoints will block other threads from executing statements while the transaction is open.
+Every Connection comes equipped with its own serial queue for statement execution and can be safely accessed across threads. Threads that open transactions and savepoints will block other threads from executing statements while the transaction is open.
+
+If you maintain multiple connections for a single database, consider setting a timeout (in seconds) and/or a busy handler:
+
+```swift
+db.busyTimeout = 5
+
+db.busyHandler({ tries in
+    if tries >= 3 {
+        return false
+    }
+    return true
+})
+```
+
+> _Note:_ The default timeout is 0, so if you see `database is locked` errors, you may be trying to access the same database simultaneously from multiple connections.
 
 
 ## Building Type-Safe SQL
@@ -1156,15 +1171,16 @@ We can bridge any type that can be initialized from and encoded to `NSData`.
 ``` swift
 // assumes NSData conformance, above
 extension UIImage: Value {
-    class var declaredDatatype: String {
-        return NSData.declaredDatatype
+    public class var declaredDatatype: String {
+        return Blob.declaredDatatype
     }
-    class func fromDatatypeValue(blobValue: Blob) -> Self {
-        return self(data: NSData.fromDatatypeValue(blobValue))
+    public class func fromDatatypeValue(blobValue: Blob) -> UIImage {
+        return UIImage(data: NSData.fromDatatypeValue(blobValue))!
     }
-    var datatypeValue: Blob {
-        return UIImagePNGRepresentation(self).datatypeValue
+    public var datatypeValue: Blob {
+        return UIImagePNGRepresentation(self)!.datatypeValue
     }
+
 }
 ```
 

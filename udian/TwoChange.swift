@@ -86,6 +86,9 @@ class TwoChange: UIViewController,UITableViewDataSource,UITableViewDelegate,UIWe
     
     var share = ShareView()
     
+    //手势返回
+    let backGesture = UIPanGestureRecognizer()
+    
     override func viewWillAppear(animated: Bool) {
         
         
@@ -150,10 +153,8 @@ class TwoChange: UIViewController,UITableViewDataSource,UITableViewDelegate,UIWe
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "hideshare", name: "hideShare", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pushTofeed", name: "PushJump", object: nil)
         LocalData.CanShowShare = true
-        //手势返回
-        let backGesture = UISwipeGestureRecognizer()
-        backGesture.direction = .Right
-        backGesture.addTarget(self, action: "swipeback")
+        //返回
+        backGesture.addTarget(self, action: "swipeback:")
         backGesture.delegate = self
         self.table.addGestureRecognizer(backGesture)
         
@@ -955,9 +956,53 @@ class TwoChange: UIViewController,UITableViewDataSource,UITableViewDelegate,UIWe
         }
     }
     
-    func swipeback(){
+    
+    func swipeback(sender:UIPanGestureRecognizer){
         LocalData.CanJump = true
-        self.navigationController?.popViewControllerAnimated(true)
+        if (sender == backGesture){
+            if self.navigationController != nil && self.navigationController?.viewControllers.first != self{
+                //如果开始右划则赋值背景
+                if sender.state == UIGestureRecognizerState.Began{
+                    if self.navigationController?.viewControllers.count > 1{
+                        let viewCount = (self.navigationController?.viewControllers.count)!
+                        let Foreimage = self.imageFromView((self.navigationController?.viewControllers[viewCount-2].view)!)
+                        self.navigationController?.view.backgroundColor = UIColor(patternImage: Foreimage)
+                    }
+                }
+                //获取手势位置
+                let point = sender.translationInView(self.view)
+                //print(point.x)
+                if point.x >= 0{
+                    self.view.frame = CGRectMake(point.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)
+                }
+                //手势取消
+                if sender.state == .Failed || sender.state == .Cancelled{
+                    self.view.frame = CGRectMake(0, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)
+                    self.navigationController?.view.backgroundColor = UIColor.whiteColor()
+                }
+                //手势完成
+                if sender.state == .Ended{
+                    if point.x >= self.view.frame.size.width/2{
+                        UIView.animateWithDuration(0.5, animations: { () -> Void in
+                            self.view.frame = CGRectMake(self.view.frame.size.width, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)
+                            }, completion: { (Bool) -> Void in
+                                self.navigationController?.popViewControllerAnimated(false)
+                                self.navigationController?.view.backgroundColor = UIColor.whiteColor()
+                        })
+                    }else{
+                        UIView.animateWithDuration(0.5, animations: { () -> Void in
+                            self.view.frame = CGRectMake(0, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)
+                            }, completion: { (Bool) -> Void in
+                                self.navigationController?.view.backgroundColor = UIColor.whiteColor()
+                        })
+                    }
+                }
+                
+                
+            }
+            
+        }
+
     }
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true

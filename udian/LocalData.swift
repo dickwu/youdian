@@ -50,6 +50,7 @@ class LocalData {
             users.setValue(keep, forKey: "UserID")
         }
     }
+    
     //注册用户id
     static var KeepUserid:String{
         get{

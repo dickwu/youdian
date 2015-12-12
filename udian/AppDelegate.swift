@@ -118,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
         })
         //百度推送
-        BPush.registerChannel(launchOptions, apiKey: "cqzIjOHQlBS8H4NL6ro8Ts40", pushMode: BPushMode.Production, withFirstAction: "", withSecondAction: "", withCategory: "", isDebug: true)
+        BPush.registerChannel(launchOptions, apiKey: "cqzIjOHQlBS8H4NL6ro8Ts40", pushMode: BPushMode.Production, withFirstAction: "", withSecondAction: "", withCategory: "", isDebug: false)
         
         
         return shouldPerformAdditionalDelegateHandling

@@ -150,7 +150,7 @@ class MeaageData:NSObject,UITableViewDataSource,UITableViewDelegate{
     func GotoFeed(sender:UIButton){
         let row = Int(sender.titleLabel!.text!.toUInt()!)
         LocalData.keepRow = row
-        print(row)
+        //print("保存commentid：[\(row)] \(LocalData.sysInfo[row].Commentid)")
         FeedbaseData.saveFeedinfo(LocalData.sysInfo[row].feedId, comment: LocalData.sysInfo[row].Commentid)
         if LocalData.sysInfo[row].feedId != "0"{
             NSNotificationCenter.defaultCenter().postNotificationName("gotoFeedDetil", object: nil)

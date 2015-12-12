@@ -41,7 +41,9 @@ class ShareView: UIView {
         self.addSubview(backGround)
         loadShareButs(backHeight)
         
-        
+        let activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        activity.startAnimating()
+        activity.stopAnimating()
         
     }
 
