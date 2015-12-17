@@ -1716,7 +1716,6 @@
 					"$(PROJECT_DIR)/Framework/ShareSDKlib/extends/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Framework/ShareSDKlib/extends/WeChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.udian;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3cf052cd-9356-420d-8cca-7c47f18826f5";
 				SDKROOT = iphoneos;
@@ -1748,7 +1747,6 @@
 					"$(PROJECT_DIR)/Framework/ShareSDKlib/extends/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Framework/ShareSDKlib/extends/WeChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.udian;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3cf052cd-9356-420d-8cca-7c47f18826f5";
 				SDKROOT = iphoneos;
