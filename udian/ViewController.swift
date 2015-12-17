@@ -431,9 +431,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 self.view.addSubview(self.mesback)
                 self.mesback.addSubview(MianTitle)
                 self.mesback.addSubview(self.Mes)
-                
                 self.mesback.addSubview(hideBut)
-                
                 self.mesback.addSubview(line)
                 self.mesback.addSubview(deletIamge)
                 APIPOST.SystemInfoList({ (res) -> Void in
@@ -456,13 +454,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                         newInfo.Commentid = one["commentid"].stringValue
                         newInfo.countHight()
                         LocalData.sysInfo.append(newInfo)
-                        
                     }
-                    
-                    
-                    
                     self.Mes.reloadData()
-
                 })
                 
             }
@@ -506,7 +499,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             }else{
                 self.messageNumLabel.alpha = 0
             }
-            
         })
     }
     
@@ -531,17 +523,12 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
         
-        
-        
     }
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         AreNotAtSearch = false
         print("正在搜索\(search.text)")
-       
-        
     }
 
-    
     @IBAction func clean(sender: AnyObject) {
         search.resignFirstResponder()
     }
@@ -553,7 +540,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         }else{
             return code
         }
-        
     }
     
     @IBAction func GotoSteup(sender: AnyObject) {
@@ -568,11 +554,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             SearchEmptyBack.removeFromSuperview()
             search.text = nil
             AreNotAtSearch = true
-            
             loadData()
         }
     }
-    
-
 }
 

@@ -12,64 +12,50 @@ import Alamofire
 class APIPOST {
     
     //获取地理位子
+    //参数固定
     static func getCity(com:((city:String)->Void)){
         Alamofire.request(.GET, "http://ip.taobao.com/service/getIpInfo2.php?ip=myip", parameters: nil).responseJSON { (response) -> Void in
             
             if response.result.value != nil{
                 let Jres = JSON(response.result.value!)
-                //print(Jres)
                 let ip = Jres["data"]["ip"].stringValue
                 let parame = ["coor":"bd09ll","output":"json","ak":"Q55T7roT63eXRPsKtbGraUcI","ip":ip]
-                
                 Alamofire.request(.GET, "http://api.map.baidu.com/location/ip", parameters: parame).responseJSON { (response) -> Void in
                     if response.result.value != nil{
                         let city = JSON(response.result.value!)
                         //print(city)
                         if city["status"].stringValue == "0"{
                             let cityName = city["content"]["address"].stringValue
-                            //print(cityName)
                             com(city: cityName)
                         }else{
-                            //print("国外")
                             com(city: "国外")
                         }
                     }
                 }
-                
             }
         }
         
     }
     
-    
     //短信验证
     static func SMSCheak(PhoneNum:String,code:String,com:((res:String?)->Void)){
-        
         let parame = ["account":"qqxxkj_fqxx","pswd":"Fqxx16888","mobile":PhoneNum,"msg":"注册验证码为：\(code) 请完成注册","needstatus":"true"]
         Alamofire.request(.GET, "http://222.73.117.158/msg/HttpBatchSendSM", parameters: parame,encoding: ParameterEncoding.URL).response { (NSURLRequest, NSHTTPURLResponse, Object, Error) -> Void in
-            //print(AnyObject)
             MobClick.event("AuthCodeBtnClicked")
             let data = Object! as NSData
             let test = NSString(data: data, encoding: NSUTF8StringEncoding)
-            //let error = NSString(string: (Error?.description)!)
-            //print(test)
             if let res = test as? String{
-                //print(res)
                 let ress = NSString(string: res)
-                //let time = ress.substringToIndex(14)
                 let state : NSString = ress.substringFromIndex(15)
-                //print( state.substringToIndex(1))
-                //print(time)
                 com(res: state.substringToIndex(1))
-                
             }else{
                 com(res: nil)
             }
         }
-        
     }
     
     //用户是否存在
+    //参数：phone
     static func checkAreAready(userID:String,com:((res:Bool)->Void),Error:((res:String?)->Void)){
         let url = Connect.domain + "LoginInterfaceHandler.ashx?msg=TestUserNameExist"
         let parame = ["phone":userID]
@@ -85,12 +71,9 @@ class APIPOST {
                 }
             }
         }
-
-        
-        
-        
     }
     //检查昵称是否重复
+    //参数：NickName
     static func checkNick(nickName:String,com:((res:Bool)->Void),Error:((res:String?)->Void)){
         let url = Connect.domain + "LoginInterfaceHandler.ashx?msg=TestNickNameExist"
         let parame = ["NickName":nickName]
@@ -113,17 +96,15 @@ class APIPOST {
     
     
     //密码修改
+    //参数: UserID \ Data
     static func ChangePass(passWord:String,com:((res:JSON)->Void)){
         //Order/dz_order.html
         let url = Connect.domain + "PersonalCenterHandler.ashx?msg=ChangePassword"
-        print(url)
         let dataDic = ["phone":LocalData.userid,"pwd":passWord]
         let data = JSON(dataDic).description
         let key = self.getCode()
-        print(data)
         let AesData = secret.AesEncrypt(key.md5().uppercaseString, data: data)
         let parame = ["UserID":key,"Data":AesData]
-        print(parame)
         Alamofire.request(.POST, url, parameters: parame,encoding: ParameterEncoding.URL).responseJSON { (response) -> Void in
             if let getData = response.result.value as? NSDictionary{
                 com(res: JSON(getData))
@@ -133,6 +114,8 @@ class APIPOST {
     }
     
     //注册新用户
+    //参数: UserID \ Data
+    //Data : phone \ pwd(sha512) \ nickname \ headphoto \ birthday \ gender(男,女)
     static func addnewone(phone:String,pwd:String,nickname:String,headphoto:String,birthday:String,gender:String,com:((res:Bool,err:String?)->Void)){
         let url = Connect.domain + "LoginInterfaceHandler.ashx?msg=Register"
         let dataDic = ["phone":phone.toUInt()!,"pwd":pwd,"nickname":nickname,"headphoto":headphoto,"birthday":birthday,"gender":gender]
@@ -157,6 +140,8 @@ class APIPOST {
         
     }
     //用户登录
+    //参数: UserID \ Data
+    //Data : phone \ pwd(sha512)
     static func UserLogin(com:((res:Bool,err:String?)->Void)){
         let url = Connect.domain + "LoginInterfaceHandler.ashx?msg=Login"
         let dataDic = ["phone":LocalData.userid,"pwd":LocalData.userPWD.sha512().uppercaseString]
@@ -189,8 +174,10 @@ class APIPOST {
         
     }
     
-        
     //用户信息修改
+    //参数: UserID \ Data
+    //Data : phone \ InformationType \ InformationValue
+    //InformationType 的类型值为以下几种：分别是“nickname”（用户昵称），“sign”（个性签名），“headphoto”（头像地址），“gender”（性别），“birthday”（生日）
     static func changeUserInfo(InformationType:String,InformationValue:String,com:((res:Bool,err:String?)->Void)){
         let url = Connect.domain + "PersonalCenterHandler.ashx?msg=PersonalInformationSet"
         let dataDic = ["phone":LocalData.userid,"InformationType":InformationType,"InformationValue":InformationValue]
@@ -226,6 +213,7 @@ class APIPOST {
         }
     }
     //加载更多feed
+    //参数: startindex 从该点开始
     static func MorefeedList(index:String, com:((res:JSON)->Void)){
         let url = "http://139.196.35.146/editors/youdian/iosapi/apis/list_morefeedApi.php"
         let parame = ["startindex":index]
@@ -237,7 +225,8 @@ class APIPOST {
     }
 
     
-    //点赞与否
+    //feed点赞与否
+    //参数: feedid \ uid(用户uid,下同)
     static func Zanfeed(feedid:String,com:((res:JSON)->Void)){
         let url = "http://139.196.35.146/editors/youdian/iosapi/apis/feedcommentApi.php"
         let parame = ["feedid":feedid,"uid":LocalData.uid]
@@ -249,18 +238,18 @@ class APIPOST {
     }
 
     //投票feed
+    //参数: feedid \ uid \ voteid(投票id)
     static func TouPiaofeed(feedid:String,voteid:String,com:((res:JSON)->Void)){
         let url = "http://139.196.35.146/editors/youdian/iosapi/apis/feedvoteApi.php"
         let parame = ["feedid":feedid,"uid":LocalData.uid,"voteid":voteid]
-        
-        print(parame)
         Alamofire.request(.POST, url, parameters: parame,encoding: ParameterEncoding.URL).responseJSON { (response) -> Void in
             if let getData = response.result.value as? NSDictionary{
                 com(res: JSON(getData))
             }
         }
     }
-    //浏览feed
+    //浏览feed记录(已弃用)
+    //参数: feedid
     static func Liulanfeed(feedid:String,com:((res:JSON)->Void)){
         let url = "http://139.196.35.146/editors/youdian/iosapi/apis/feedbrowserApi.php"
         let parame = ["feedid":feedid]

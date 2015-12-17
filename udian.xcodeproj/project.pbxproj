@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4EE993C91C1D492C00A569D7 /* ExView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE993C81C1D492C00A569D7 /* ExView.swift */; };
 		F6439EF21C045BDF006F0D35 /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F6439EC91C045BDF006F0D35 /* YYCache.m */; };
 		F6439EF31C045BDF006F0D35 /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F6439ECB1C045BDF006F0D35 /* YYDiskCache.m */; };
 		F6439EF41C045BDF006F0D35 /* YYKVStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6439ECD1C045BDF006F0D35 /* YYKVStorage.m */; };
@@ -325,6 +326,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4EE993C81C1D492C00A569D7 /* ExView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExView.swift; sourceTree = "<group>"; };
 		F6439EC81C045BDF006F0D35 /* YYCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCache.h; sourceTree = "<group>"; };
 		F6439EC91C045BDF006F0D35 /* YYCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCache.m; sourceTree = "<group>"; };
 		F6439ECA1C045BDF006F0D35 /* YYDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDiskCache.h; sourceTree = "<group>"; };
@@ -1156,6 +1158,7 @@
 				F648DDA01BC909E500F978DD /* emojiKeyboard.swift */,
 				F648DD731BC909A200F978DD /* Launch.storyboard */,
 				F69A3D011BC8F0FE0060CD4B /* Info.plist */,
+				4EE993C81C1D492C00A569D7 /* ExView.swift */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -1532,6 +1535,7 @@
 				F648DD4B1BC9084C00F978DD /* AGEmojiKeyBoardView.m in Sources */,
 				F648DDA91BC909E500F978DD /* Post.swift in Sources */,
 				F648DDB81BC909E500F978DD /* Picture.swift in Sources */,
+				4EE993C91C1D492C00A569D7 /* ExView.swift in Sources */,
 				F648DDB01BC909E500F978DD /* aboutUdian.swift in Sources */,
 				F648DD141BC9084C00F978DD /* AFHTTPSessionManager.m in Sources */,
 				F648DD581BC9084C00F978DD /* UIButton+WebCache.m in Sources */,
